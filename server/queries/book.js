@@ -13,7 +13,6 @@ const query = {
     type: BookType,
     args: { id: { type: GraphQLID } },
     resolve(parent, args) {
-      console.log(args.id);
       return Book.findById(args.id)
     }
   },
