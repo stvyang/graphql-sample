@@ -11,10 +11,10 @@ const {
 const BookInputType = new GraphQLInputObjectType({
   name: 'BookInput',
   fields: {
-    title: { type: new GraphQLNonNull(GraphQLString) },
-    author: { type: new GraphQLNonNull(GraphQLString) },
-    price: { type: new GraphQLNonNull(GraphQLFloat) },
-    stock: { type: new GraphQLNonNull(GraphQLInt) }
+    title: { type: GraphQLString },
+    author: { type: GraphQLString },
+    price: { type: GraphQLFloat },
+    stock: { type: GraphQLInt }
   }
 });
 
