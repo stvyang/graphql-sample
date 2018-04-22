@@ -8,7 +8,7 @@ const port = process.env.PORT || 4000;
 
 mongoose.connect('mongodb://stvyang:password@ds231245.mlab.com:31245/graphql-sample');
 mongoose.connection.once('open', () => {
-  console.log('connected to mLab');
+  console.log('Connected to mLab');
 });
 
 app.use('/graphql', graphqlHTTP({
@@ -17,5 +17,5 @@ app.use('/graphql', graphqlHTTP({
 }))
 
 app.listen(port, () => {
-  console.log(`GraphQL apps is listening on port ${port}`);
+  console.log(`GraphQL apps is running on port ${port}`);
 })
