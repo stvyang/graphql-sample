@@ -5,9 +5,9 @@ const {
   GraphQLBoolean
 } = graphql;
 
-const Order = require('../models/order');
-const OrderType = require('../types/order');
-const OrderInputType = require('../types/order-input');
+const Order = require('../../model/order');
+const OrderType = require('./type');
+const OrderInputType = require('./input-type');
 
 const mutation = {
   createOrder: {

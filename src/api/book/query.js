@@ -5,21 +5,21 @@ const {
   GraphQLID
 } = graphql;
 
-const Order = require('../models/order');
-const OrderType = require('../types/order')
+const Book = require('../../model/book');
+const BookType = require('./type');
 
 const query = {
-  order: {
-    type: OrderType,
+  book: {
+    type: BookType,
     args: { id: { type: GraphQLID } },
     resolve(parent, args) {
-      return Order.findById(args.id);
+      return Book.findById(args.id)
     }
   },
-  orders: {
-    type: new GraphQLList(OrderType),
+  books: {
+    type: new GraphQLList(BookType),
     resolve(parent, args) {
-      return Order.find({});
+      return Book.find({});
     }
   }
 }

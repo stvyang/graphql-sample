@@ -5,9 +5,9 @@ const {
   GraphQLBoolean
 } = graphql;
 
-const Book = require('../models/book');
-const BookType = require('../types/book');
-const BookInputType = require('../types/book-input');
+const Book = require('../../model/book');
+const BookType = require('./type');
+const BookInputType = require('./input-type');
 
 const mutation = {
   createBook: {
