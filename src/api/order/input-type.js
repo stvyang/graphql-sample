@@ -3,10 +3,12 @@ const {
   GraphQLInputObjectType,
   GraphQLString,
   GraphQLFloat,
-  GraphQLBoolean
+  GraphQLBoolean,
+  GraphQLList
 } = graphql;
 
 const { GraphQLDate } = require('graphql-iso-date');
+const OrderDetailInputType = require('../order-detail/input-type');
 
 const OrderInputType = new GraphQLInputObjectType({
   name: 'OrderInput',
@@ -14,7 +16,8 @@ const OrderInputType = new GraphQLInputObjectType({
     customerName: { type: GraphQLString },
     orderDate: { type: GraphQLDate },
     totalPayment: { type: GraphQLFloat },
-    isDelivered: { type: GraphQLBoolean }
+    isDelivered: { type: GraphQLBoolean },
+    orderDetails: { type: new GraphQLList(OrderDetailInputType) }
   }
 });
 

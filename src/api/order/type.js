@@ -4,10 +4,13 @@ const {
   GraphQLID,
   GraphQLString,
   GraphQLFloat,
-  GraphQLBoolean
+  GraphQLBoolean,
+  GraphQLList
 } = graphql;
-
 const { GraphQLDate } = require('graphql-iso-date');
+
+const OrderDetailType = require('../order-detail/type');
+const OrderDetail = require('../../model/order-detail');
 
 const OrderType = new GraphQLObjectType({
   name: 'Order',
@@ -16,7 +19,13 @@ const OrderType = new GraphQLObjectType({
     customerName: { type: GraphQLString },
     orderDate: { type: GraphQLDate },
     totalPayment: { type: GraphQLFloat },
-    isDelivered: { type: GraphQLBoolean }
+    isDelivered: { type: GraphQLBoolean },
+    orderDetails: {
+      type: new GraphQLList(OrderDetailType),
+      resolve(parent, args) {
+        return OrderDetail.find({ orderId: parent.id });
+      }
+    }
   }
 })
 

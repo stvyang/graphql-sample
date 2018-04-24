@@ -1,4 +1,5 @@
 const graphql = require('graphql');
+const _ = require('lodash');
 
 const {
   GraphQLID,
@@ -8,14 +9,23 @@ const {
 const Order = require('../../model/order');
 const OrderType = require('./type');
 const OrderInputType = require('./input-type');
+const OrderDetail = require('../../model/order-detail');
 
 const mutation = {
   createOrder: {
     type: OrderType,
     args: { data: { type: OrderInputType } },
-    resolve(parent, args) {
+    async resolve(parent, args) {
       let order = new Order(args.data);
-      return order.save();
+      await order.save();
+
+      _.forEach(args.data.orderDetails, (orderDetail) => {
+        orderDetail.orderId = order._id;
+      })
+
+      await OrderDetail.insertMany(args.data.orderDetails);
+
+      return order;
     }
   },
   updateOrder: {
