@@ -1,9 +1,12 @@
 const express = require('express');
 const graphqlHTTP = require('express-graphql');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const schema = require('./src/api/schema');
 const app = express();
+app.use(cors());
+
 const port = process.env.PORT || 4000;
 
 mongoose.connect('mongodb://stvyang:password@ds231245.mlab.com:31245/graphql-sample');
